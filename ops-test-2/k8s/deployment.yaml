@@ -26,6 +26,14 @@ spec:
             port: 8080
           initialDelaySeconds: 2
           periodSeconds: 3
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10   # wait 10s before first check
+          periodSeconds: 5          # check every 5s
+          failureThreshold: 3       # restart container after 3 failures
+          successThreshold: 1
         resources:
           requests:
             cpu: "100m"
