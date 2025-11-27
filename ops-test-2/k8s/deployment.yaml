@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: advanced-app
+      component: sidecar
+  template:
+    metadata:
+      labels:
+        app: advanced-app
+        component: sidecar
+    spec:
+      containers:
+      - name: advanced-app
+        image: advanced-candidate:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 2
+          periodSeconds: 3
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "300m"
+            memory: "256Mi"
+        volumeMounts:
+        - name: logs
+          mountPath: /var/log/test2
+
+      - name: sidecar
+        image: busybox
+        command: ["sh", "-c", "tail -F /var/log/test2/*.log"]
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+          limits:
+            cpu: "100m"
+            memory: "128Mi"
+        volumeMounts:
+        - name: logs
+          mountPath: /var/log/test2
+
+      volumes:
+      - name: logs
+        emptyDir: {}
+
+      # - name: sidecar
+      #   image: advanced-sidecar:latest
+      #   ports:
+      #   - containerPort: 9000

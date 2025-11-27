@@ -1,0 +1,4 @@
+2025-02-11 11:20:11 [ERROR] Timeout waiting for /healthz
+2025-02-11 11:20:12 [ERROR] Probe failed for container: sre-app
+2025-02-11 11:20:17 [ERROR] Readiness probe failed (HTTP 500)
+2025-02-11 11:20:18 [WARNING] High response latency detected: 7000ms

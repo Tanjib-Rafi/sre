@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test2-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: test2-app
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              component: sidecar
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              component: sidecar
