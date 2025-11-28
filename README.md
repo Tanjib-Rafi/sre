@@ -14,7 +14,8 @@ be used directly inside Minikube.
 - NetworkPolicy is too restrictive (e.g., only allows pods with component=sidecar), Istio proxies from other pods may be blocked unless their labels match.
 
 ## Screenshots
-
+- Testing HPA CPU autoscaling validation
+  
 <img width="3746" height="876" alt="Screenshot from 2025-11-27 23-14-58" src="https://github.com/user-attachments/assets/538d3fc3-7aac-4ecb-ab68-8296efb54266" />
 
 <img width="3216" height="1428" alt="Screenshot from 2025-11-27 23-04-14" src="https://github.com/user-attachments/assets/11fa5022-0d55-4b75-81fd-5b51c8f4c3ca" />
