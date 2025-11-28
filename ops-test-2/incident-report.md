@@ -97,6 +97,37 @@ Without CPU resource requests defined on **all containers** (including sidecar),
    - Initially, `hostPath` volume pointed to a directory that did not exist or was misconfigured, causing `MountVolume.SetUp failed`.
 3. **Application log setup**:
    - The Go application did not write logs to the expected shared directory, preventing the sidecar from tailing logs.
+4. **Add Istio**:
+```
+External Client
+       |
+       v
++-------------------+
+| Istio Ingress      |
+| Gateway Proxy      |
++-------------------+
+       |
+       v
++-------------------+
+| Pod: advanced-app |
+| Labels:           |
+|   app=advanced-app|
+|   component=sidecar|
++-------------------+
+|   Containers:     |
+|   - advanced-app  |
+|   - sidecar       |
+|   - istio-proxy   |
++-------------------+
+       ^
+       | (egress)
+       |
++-------------------+
+| Other Pods in mesh|
+|   (istio-proxy)  |
++-------------------+
+
+```
 
 ## Timeline
 | Time (approx.) | Event |

@@ -10,3 +10,4 @@
 - Host directories are not automatically mounted into pods; therefore, a local `logs/` folder cannot be used directly inside Minikube.
 - Sidecar containers may fail to start without explicit CPU and memory requests.
 - Both the main application and the sidecar container run on the same pod/node, so resource contention can directly affect application performance and readiness.
+- NetworkPolicy is too restrictive (e.g., only allows pods with component=sidecar), Istio proxies from other pods may be blocked unless their labels match.

@@ -4,7 +4,8 @@ metadata:
   name: test2-app-service
 spec:
   selector:
-    app: advanced
+    app: advanced-app
+    component: sidecar
   ports:
     - name: http
       port: 80

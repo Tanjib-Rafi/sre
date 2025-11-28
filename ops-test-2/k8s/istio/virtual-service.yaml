@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: advanced-app-vs
+  namespace: test2
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - advanced-app-gateway
+  http:
+  - route:
+    - destination:
+        host: test2-app-service.test2.svc.cluster.local
+        port:
+          number: 80

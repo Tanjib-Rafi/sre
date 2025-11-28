@@ -5,7 +5,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: test2-app
+      app: advanced-app # NetworkPolicy podSelector matches the labels of the deployment
   policyTypes:
     - Ingress
     - Egress
@@ -14,6 +14,7 @@ spec:
         - podSelector:
             matchLabels:
               component: sidecar
+              
   egress:
     - to:
         - podSelector:
